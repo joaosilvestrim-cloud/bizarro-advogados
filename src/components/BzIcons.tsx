@@ -220,13 +220,12 @@ export function BzClose({ size = D.size, color = D.color, style }: IconProps) {
   );
 }
 
-/* ── Gold diamond bullet ─────────────────────────────── */
+/* ── Gold circle bullet ─────────────────────────────── */
 export function BzBullet({ color = "#C9A84C" }: { color?: string }) {
   return (
     <svg width="7" height="7" viewBox="0 0 7 7" fill="none"
       style={{ flexShrink: 0, marginTop: "7px" }}>
-      <rect x="0.5" y="0.5" width="6" height="6" transform="rotate(45 3.5 3.5)"
-        fill={color} />
+      <circle cx="3.5" cy="3.5" r="3" fill={color} />
     </svg>
   );
 }

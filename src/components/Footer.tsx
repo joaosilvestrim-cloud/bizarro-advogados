@@ -78,7 +78,7 @@ export default function Footer() {
             <p style={{ fontSize: "13px", lineHeight: 1.8, marginBottom: "2rem" }}>
               Agende uma consulta e descubra como podemos proteger seus interesses com soluções personalizadas e eficazes.
             </p>
-            <a href="#contato" style={{ display: "inline-block", padding: "0.85rem 1.75rem", border: "1px solid #C9A84C", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}
+            <a href="#contato" style={{ display: "inline-block", padding: "0.85rem 1.75rem", border: "1px solid #C9A84C", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: "6px" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#C9A84C"; (e.currentTarget as HTMLElement).style.color = "#060E1A"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
             >

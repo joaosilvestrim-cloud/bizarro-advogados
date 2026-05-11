@@ -43,6 +43,7 @@ function InfoRow({ item, idx, vis }: { item: typeof info[0]; idx: number; vis: b
         display: "flex", alignItems: "center", justifyContent: "center",
         border: `1px solid ${hov ? "rgba(201,168,76,0.6)" : "rgba(201,168,76,0.3)"}`,
         background: hov ? "rgba(201,168,76,0.12)" : "rgba(201,168,76,0.06)",
+        borderRadius: "8px",
         transition: `all 0.3s ${E}`,
         transform: hov ? "scale(1.08)" : "scale(1)",
       }}>
@@ -143,7 +144,7 @@ export default function Contact() {
                     <input
                       id={f.id} type={f.type} placeholder={f.placeholder}
                       className="field-input"
-                      style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", boxSizing: "border-box", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
+                      style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", borderRadius: "6px", fontSize: "14px", color: "#0A1628", outline: "none", boxSizing: "border-box", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
                     />
                   </div>
                 ))}
@@ -156,7 +157,7 @@ export default function Contact() {
                 <input
                   id="email" type="email" placeholder="seu@email.com"
                   className="field-input"
-                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", boxSizing: "border-box", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
+                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", borderRadius: "6px", fontSize: "14px", color: "#0A1628", outline: "none", boxSizing: "border-box", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
                 />
               </div>
 
@@ -167,7 +168,7 @@ export default function Contact() {
                 <select
                   id="assunto"
                   className="field-input"
-                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", appearance: "none", boxSizing: "border-box", cursor: "pointer", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
+                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", borderRadius: "6px", fontSize: "14px", color: "#0A1628", outline: "none", appearance: "none", boxSizing: "border-box", cursor: "pointer", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
                 >
                   <option value="">Selecione uma área</option>
                   <option>Contratos</option>
@@ -186,7 +187,7 @@ export default function Contact() {
                   id="msg" rows={4}
                   placeholder="Descreva brevemente como podemos ajudar..."
                   className="field-input"
-                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", resize: "none", boxSizing: "border-box", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
+                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", borderRadius: "6px", fontSize: "14px", color: "#0A1628", outline: "none", resize: "none", boxSizing: "border-box", transition: `border-color 0.25s ease, box-shadow 0.25s ease` }}
                 />
               </div>
 
@@ -197,7 +198,7 @@ export default function Contact() {
                   background: btnHov ? "#C9A84C" : "#0A1628",
                   color: btnHov ? "#0A1628" : "#fff",
                   fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700,
-                  border: "none", cursor: "pointer",
+                  border: "none", cursor: "pointer", borderRadius: "6px",
                   display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
                   transition: `background 0.3s ${E}, color 0.3s ${E}, transform 0.3s ${E}, box-shadow 0.3s ${E}`,
                   transform: btnHov ? "translateY(-2px)" : "none",

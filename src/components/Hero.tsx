@@ -116,13 +116,13 @@ export default function Hero() {
 
           {/* CTAs */}
           <div style={{ ...anim(560), display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-            <a href="#servicos" style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", padding: "1rem 2.25rem", background: "#C9A84C", color: "#060E1A", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", transition: `background 0.25s ${EASING}, transform 0.25s ${EASING}, box-shadow 0.25s ${EASING}` }}
+            <a href="#servicos" style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", padding: "1rem 2.25rem", background: "#C9A84C", color: "#060E1A", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: "6px", transition: `background 0.25s ${EASING}, transform 0.25s ${EASING}, box-shadow 0.25s ${EASING}` }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#E8C96E"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(201,168,76,0.35)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#C9A84C"; (e.currentTarget as HTMLElement).style.transform = "none"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
             >
               Nossas Especialidades <span>→</span>
             </a>
-            <a href="#escritorio" style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", padding: "1rem 2.25rem", border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.7)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 300, textDecoration: "none", transition: `border-color 0.25s ${EASING}, color 0.25s ${EASING}, transform 0.25s ${EASING}` }}
+            <a href="#escritorio" style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", padding: "1rem 2.25rem", border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.7)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 300, textDecoration: "none", borderRadius: "6px", transition: `border-color 0.25s ${EASING}, color 0.25s ${EASING}, transform 0.25s ${EASING}` }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#C9A84C"; (e.currentTarget as HTMLElement).style.color = "#C9A84C"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)"; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.7)"; (e.currentTarget as HTMLElement).style.transform = "none"; }}
             >

@@ -129,7 +129,7 @@ function Card({ svc, idx, vis }: { svc: typeof svcs[0]; idx: number; vis: boolea
         <div style={{
           width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center",
           border: "1px solid rgba(201,168,76,0.3)", background: "rgba(201,168,76,0.06)",
-          marginBottom: "1.5rem",
+          marginBottom: "1.5rem", borderRadius: "10px",
           transition: `background 0.3s ${E}, border-color 0.3s ${E}, transform 0.35s ${E}`,
           transform: hovered ? "scale(1.08) rotate(3deg)" : "scale(1) rotate(0deg)",
           ...(hovered ? { background: "rgba(201,168,76,0.12)", borderColor: "rgba(201,168,76,0.6)" } : {}),
@@ -234,7 +234,7 @@ export default function Services() {
         }}>
           <p style={{ color: "rgba(6,14,26,0.4)", fontSize: "14px", marginBottom: "1.5rem" }}>Não encontrou o que procurava? Entre em contato.</p>
           <a href="#contato"
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "1rem 2.5rem", background: "#060E1A", color: "#fff", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, textDecoration: "none", transition: `background 0.3s ${E}, transform 0.3s ${E}, box-shadow 0.3s ${E}` }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "1rem 2.5rem", background: "#060E1A", color: "#fff", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, textDecoration: "none", borderRadius: "6px", transition: `background 0.3s ${E}, transform 0.3s ${E}, box-shadow 0.3s ${E}` }}
             onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = "#0A1628"; el.style.transform = "translateY(-2px)"; el.style.boxShadow = "0 8px 24px rgba(6,14,26,0.25)"; }}
             onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = "#060E1A"; el.style.transform = "none"; el.style.boxShadow = "none"; }}
           >

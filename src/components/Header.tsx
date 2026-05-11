@@ -50,7 +50,7 @@ export default function Header() {
             <BzPhone size={12} color="#C9A84C" />
             (11) 4337-4200
           </a>
-          <a href="#contato" style={{ padding: "0.55rem 1.4rem", border: "1px solid #C9A84C", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", transition: "all 0.2s" }}
+          <a href="#contato" style={{ padding: "0.55rem 1.4rem", border: "1px solid #C9A84C", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: "6px", transition: "all 0.2s" }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#C9A84C"; (e.currentTarget as HTMLElement).style.color = "#0A1628"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
           >Consulta</a>
@@ -70,7 +70,7 @@ export default function Header() {
               {l.l}
             </a>
           ))}
-          <a href="#contato" style={{ display: "inline-block", marginTop: "1.5rem", padding: "0.75rem 2rem", background: "#C9A84C", color: "#0A1628", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
+          <a href="#contato" style={{ display: "inline-block", marginTop: "1.5rem", padding: "0.75rem 2rem", background: "#C9A84C", color: "#0A1628", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: "6px" }}>
             Consulta
           </a>
         </div>
