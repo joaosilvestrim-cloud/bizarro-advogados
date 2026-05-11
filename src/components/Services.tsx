@@ -3,10 +3,70 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronDown, FileText, Building2, TrendingDown, Landmark } from "lucide-react";
 
 const svcs = [
-  { Icon: FileText, title: "Contratos", desc: "Elaboração e revisão de contratos empresariais com segurança jurídica e foco nos seus interesses.", items: ["Contratos bancários", "Parcerias comerciais / SPE", "Representação comercial", "Compromissos de compra e venda", "Franquia empresarial", "Contrato de não-concorrência", "Cessão de direitos"] },
-  { Icon: TrendingDown, title: "Recuperação Judicial e Falência", desc: "Assessoria completa em processos de reestruturação empresarial e defesa em ações falimentares.", items: ["Estudo de viabilidade econômica e jurídica do plano de recuperação", "Habilitação e defesa de crédito", "Defesa em ação de falência – empresa e sócios"] },
-  { Icon: Building2, title: "Direito Imobiliário", desc: "Assessoria jurídica em transações imobiliárias, minimizando riscos e garantindo segurança.", items: ["Financiamento imobiliário", "Compra e venda de imóveis", "Hipoteca e garantias reais", "Análise de risco em aquisição imobiliária", "Locação e despejo", "Ação renovatória e revisional", "Processo administrativo perante Cartório de Registro de Imóveis"] },
-  { Icon: Landmark, title: "Direito Tributário", desc: "Planejamento e defesa tributária para reduzir a carga fiscal dentro da legalidade.", items: ["Compensação de crédito tributário", "Defesas administrativas e judiciais", "Contra cobrança indevida de tributos", "Planejamento tributário e enquadramento fiscal", "Viabilização de parcelamentos e quitação de dívidas tributárias"] },
+  {
+    Icon: FileText,
+    title: "Contratos",
+    desc: "Elaboração, análise e revisão estratégica de contratos empresariais e civis, com foco em segurança jurídica, prevenção de riscos e proteção dos interesses do cliente. Atuamos de forma personalizada para garantir relações comerciais mais seguras, transparentes e sustentáveis.",
+    items: [
+      "Contratos bancários e renegociação de obrigações financeiras",
+      "Estruturação de parcerias comerciais e sociedades em SPE",
+      "Contratos de representação comercial e distribuição",
+      "Compromissos de compra e venda de bens e ativos",
+      "Franquias empresariais e contratos de licenciamento",
+      "Contratos de confidencialidade e não concorrência",
+      "Cessão de direitos, créditos e ativos empresariais",
+      "Revisão contratual e mitigação de riscos jurídicos",
+      "Assessoria preventiva em negociações estratégicas",
+    ],
+  },
+  {
+    Icon: TrendingDown,
+    title: "Recuperação Judicial e Falência",
+    desc: "Assessoria jurídica especializada em reestruturação empresarial, recuperação judicial e defesa em ações falimentares, atuando de forma estratégica para preservação da atividade empresarial, proteção patrimonial e reorganização financeira.",
+    items: [
+      "Estudo de viabilidade econômica e jurídica para recuperação judicial",
+      "Estruturação e acompanhamento de plano de recuperação empresarial",
+      "Habilitação, impugnação e defesa de créditos",
+      "Defesa em ações de falência para empresas e sócios",
+      "Negociação com credores e reestruturação de passivos",
+      "Atuação em medidas de preservação patrimonial",
+      "Assessoria em processos de insolvência e crise empresarial",
+      "Acompanhamento completo em procedimentos judiciais e administrativos",
+    ],
+  },
+  {
+    Icon: Building2,
+    title: "Direito Imobiliário",
+    desc: "Atuação jurídica completa em negócios e operações imobiliárias, oferecendo segurança, transparência e redução de riscos em transações patrimoniais e relações contratuais.",
+    items: [
+      "Assessoria em financiamento imobiliário",
+      "Compra, venda e regularização de imóveis",
+      "Estruturação de hipotecas e garantias reais",
+      "Due diligence e análise de risco imobiliário",
+      "Contratos de locação residencial e comercial",
+      "Ações de despejo, cobrança e revisional de aluguel",
+      "Ações renovatórias de contratos comerciais",
+      "Regularização documental e registral de imóveis",
+      "Atuação em processos administrativos perante Cartórios de Registro de Imóveis",
+      "Consultoria preventiva para investidores e incorporadoras",
+    ],
+  },
+  {
+    Icon: Landmark,
+    title: "Direito Tributário",
+    desc: "Planejamento tributário estratégico e defesa fiscal voltados à redução de riscos e otimização da carga tributária, sempre com atuação alinhada à legislação vigente e às necessidades do negócio.",
+    items: [
+      "Compensação e recuperação de créditos tributários",
+      "Defesas administrativas e judiciais em matéria tributária",
+      "Contestação de cobranças indevidas de tributos",
+      "Planejamento tributário empresarial e societário",
+      "Enquadramento fiscal e revisão de regime tributário",
+      "Negociação e viabilização de parcelamentos fiscais",
+      "Regularização de passivos tributários",
+      "Consultoria preventiva para redução de contingências fiscais",
+      "Acompanhamento de fiscalizações e autuações tributárias",
+    ],
+  },
 ];
 
 function Card({ svc, idx }: { svc: typeof svcs[0]; idx: number }) {
