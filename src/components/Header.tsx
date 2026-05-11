@@ -29,9 +29,12 @@ export default function Header() {
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", height: scrolled ? "64px" : "72px", transition: "height 0.3s ease" }}>
 
         {/* Logo */}
-        <a href="#inicio" style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "1px" }}>
-          <span style={{ fontFamily: "var(--font-playfair)", fontSize: "1.35rem", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", lineHeight: 1 }}>BIZARRO</span>
-          <span style={{ fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase", color: "#C9A84C", fontWeight: 500, lineHeight: 1 }}>Advogados Associados</span>
+        <a href="#inicio" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+          <img
+            src="/logo.png"
+            alt="Bizarro Advogados Associados"
+            style={{ height: scrolled ? "36px" : "42px", width: "auto", transition: "height 0.3s ease" }}
+          />
         </a>
 
         {/* Desktop nav */}

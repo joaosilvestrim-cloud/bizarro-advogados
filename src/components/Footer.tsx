@@ -19,8 +19,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <p style={{ fontFamily: "var(--font-playfair)", fontSize: "1.5rem", fontWeight: 700, letterSpacing: "0.12em", color: "#fff" }}>BIZARRO</p>
-            <p style={{ fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase", color: "#C9A84C", fontWeight: 500, marginBottom: "1.5rem" }}>Advogados Associados</p>
+            <img src="/logo.png" alt="Bizarro Advogados Associados" style={{ height: "48px", width: "auto", marginBottom: "1.5rem" }} />
             <div style={{ width: "40px", height: "1px", background: "#C9A84C", marginBottom: "1.5rem" }} />
             <p style={{ fontSize: "13px", lineHeight: 1.8, marginBottom: "2rem", maxWidth: "260px" }}>
               Excelência jurídica com propósito. Protegendo os seus interesses com estratégia, ética e comprometimento.
