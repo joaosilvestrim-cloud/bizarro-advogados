@@ -1,66 +1,29 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-gold: #C9A84C;
-  --color-gold-light: #E8C96E;
-  --color-gold-dark: #A07830;
-  --color-navy: #0A1628;
-  --color-navy-mid: #112240;
-  --color-offwhite: #F5F3EE;
-  --color-background: #ffffff;
-  --color-foreground: #0A1628;
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   overflow-x: hidden;
-  background: #ffffff;
+  background: #fff;
   color: #0A1628;
-  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-family: var(--font-inter, 'Inter', sans-serif);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0A1628; }
-::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #060E1A; }
+::-webkit-scrollbar-thumb { background: #C9A84C; }
 
-.text-gold-gradient {
-  background: linear-gradient(135deg, #C9A84C 0%, #E8C96E 50%, #A07830 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gold-line {
-  width: 48px;
-  height: 2px;
-  background: linear-gradient(90deg, #C9A84C, #E8C96E);
-  flex-shrink: 0;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 .fade-up {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
 }
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up.d1 { transition-delay: 0.1s; }
+.fade-up.d2 { transition-delay: 0.2s; }
+.fade-up.d3 { transition-delay: 0.3s; }
+
+.gold { background: linear-gradient(135deg,#C9A84C 0%,#E8C96E 50%,#A07830 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }

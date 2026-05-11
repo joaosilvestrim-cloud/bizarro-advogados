@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Phone, Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
-const contactInfo = [
+const info = [
   { icon: Phone, label: "Telefone", value: "(11) 4337-4200", href: "tel:+551143374200" },
   { icon: Mail, label: "E-mail", value: "sidnei@bizarro.adv.br", href: "mailto:sidnei@bizarro.adv.br" },
   { icon: MapPin, label: "Endereço", value: "Al. Dona Tereza Cristina, 372\nJardim Nova Petropolis\nSão Bernardo do Campo – SP", href: null },
@@ -12,143 +12,152 @@ const contactInfo = [
 
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
-      { threshold: 0.05 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) el.classList.add("visible"); }, { threshold: 0.05 });
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <section id="contato" className="w-full bg-[#F5F3EE] py-24 overflow-hidden">
-      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mb-24 -mt-24" />
+    <section id="contato" style={{ width: "100%", background: "#0A1628", overflow: "hidden" }}>
+      {/* Header strip */}
+      <div style={{ background: "#C9A84C", padding: "0.6rem 0", textAlign: "center" }}>
+        <p style={{ fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#0A1628", fontWeight: 700 }}>
+          Fale Conosco
+        </p>
+      </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
-        {/* Header */}
-        <div ref={ref} className="fade-up">
-          <div className="text-center mb-14">
-            <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
-              Fale Conosco
+      <div
+        ref={ref}
+        className="fade-up"
+        style={{ maxWidth: "1200px", margin: "0 auto", padding: "5rem 2.5rem" }}
+      >
+        {/* Heading */}
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(2.5rem,4vw,4rem)", fontWeight: 700, color: "#fff", lineHeight: 1.1, margin: 0 }}>
+            Contato &amp;{" "}
+            <span style={{ fontStyle: "italic", background: "linear-gradient(135deg,#C9A84C,#E8C96E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              Localização
+            </span>
+          </h2>
+          <div style={{ width: "48px", height: "2px", background: "linear-gradient(90deg,#C9A84C,#E8C96E)", margin: "1.5rem auto 0" }} />
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%,480px),1fr))", gap: "3rem", alignItems: "start" }}>
+          {/* ── Form ── */}
+          <div style={{ background: "#F5F3EE", padding: "3rem" }}>
+            <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "1.5rem", fontWeight: 700, color: "#0A1628", marginBottom: "0.5rem" }}>
+              Envie uma mensagem
+            </h3>
+            <p style={{ color: "rgba(10,22,40,0.5)", fontSize: "14px", marginBottom: "2rem", lineHeight: 1.6 }}>
+              Preencha o formulário e entraremos em contato em até 24 horas úteis.
             </p>
-            <h2
-              className="text-4xl md:text-5xl font-bold text-[#0A1628]"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              Contato &amp; <br />
-              <span className="italic text-[#C9A84C]">Localização</span>
-            </h2>
-            <div className="gold-line mx-auto mt-6" />
+
+            <form onSubmit={(e) => e.preventDefault()} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                {[
+                  { id: "nome", label: "Nome completo", type: "text", placeholder: "Seu nome" },
+                  { id: "tel", label: "Telefone", type: "tel", placeholder: "(11) 00000-0000" },
+                ].map((f) => (
+                  <div key={f.id}>
+                    <label htmlFor={f.id} style={{ display: "block", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(10,22,40,0.45)", marginBottom: "0.5rem", fontWeight: 600 }}>
+                      {f.label}
+                    </label>
+                    <input
+                      id={f.id}
+                      type={f.type}
+                      placeholder={f.placeholder}
+                      style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", boxSizing: "border-box" }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                <label htmlFor="email" style={{ display: "block", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(10,22,40,0.45)", marginBottom: "0.5rem", fontWeight: 600 }}>
+                  E-mail
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", boxSizing: "border-box" }}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="assunto" style={{ display: "block", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(10,22,40,0.45)", marginBottom: "0.5rem", fontWeight: 600 }}>
+                  Área de interesse
+                </label>
+                <select
+                  id="assunto"
+                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", appearance: "none", boxSizing: "border-box", cursor: "pointer" }}
+                >
+                  <option value="">Selecione uma área</option>
+                  <option>Contratos</option>
+                  <option>Recuperação Judicial e Falência</option>
+                  <option>Direito Imobiliário</option>
+                  <option>Direito Tributário</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="msg" style={{ display: "block", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(10,22,40,0.45)", marginBottom: "0.5rem", fontWeight: 600 }}>
+                  Mensagem
+                </label>
+                <textarea
+                  id="msg"
+                  rows={4}
+                  placeholder="Descreva brevemente como podemos ajudar..."
+                  style={{ width: "100%", padding: "0.85rem 1rem", background: "#fff", border: "1px solid rgba(10,22,40,0.12)", fontSize: "14px", color: "#0A1628", outline: "none", resize: "none", boxSizing: "border-box" }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                style={{ padding: "1rem 2rem", background: "#0A1628", color: "#fff", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}
+              >
+                Enviar Mensagem →
+              </button>
+            </form>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-10">
-            {/* Form */}
-            <div className="bg-white p-8 md:p-10 shadow-sm">
-              <h3
-                className="text-xl font-bold text-[#0A1628] mb-7"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Envie uma mensagem
-              </h3>
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[10px] tracking-[0.25em] uppercase text-[#0A1628]/45 mb-1.5">Nome</label>
-                    <input
-                      type="text"
-                      placeholder="Seu nome"
-                      className="w-full border border-[#E0DCD5] px-4 py-3 text-sm text-[#0A1628] bg-transparent focus:outline-none focus:border-[#C9A84C] transition-colors placeholder:text-[#0A1628]/30"
-                    />
+          {/* ── Info ── */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(201,168,76,0.15)" }}>
+            {info.map((item, i) => {
+              const Icon = item.icon;
+              const inner = (
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "1.25rem", padding: "1.75rem 2rem", background: "#112240" }}>
+                  <div style={{ width: "42px", height: "42px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(201,168,76,0.3)", background: "rgba(201,168,76,0.06)" }}>
+                    <Icon size={16} style={{ color: "#C9A84C" }} />
                   </div>
-                  <div>
-                    <label className="block text-[10px] tracking-[0.25em] uppercase text-[#0A1628]/45 mb-1.5">Telefone</label>
-                    <input
-                      type="tel"
-                      placeholder="(11) 00000-0000"
-                      className="w-full border border-[#E0DCD5] px-4 py-3 text-sm text-[#0A1628] bg-transparent focus:outline-none focus:border-[#C9A84C] transition-colors placeholder:text-[#0A1628]/30"
-                    />
+                  <div style={{ minWidth: 0 }}>
+                    <p style={{ fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: "0.35rem", fontWeight: 600 }}>
+                      {item.label}
+                    </p>
+                    <p style={{ fontSize: "15px", color: "#fff", fontWeight: 500, lineHeight: 1.55, whiteSpace: "pre-line" }}>
+                      {item.value}
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <label className="block text-[10px] tracking-[0.25em] uppercase text-[#0A1628]/45 mb-1.5">E-mail</label>
-                  <input
-                    type="email"
-                    placeholder="seu@email.com"
-                    className="w-full border border-[#E0DCD5] px-4 py-3 text-sm text-[#0A1628] bg-transparent focus:outline-none focus:border-[#C9A84C] transition-colors placeholder:text-[#0A1628]/30"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] tracking-[0.25em] uppercase text-[#0A1628]/45 mb-1.5">Assunto</label>
-                  <select className="w-full border border-[#E0DCD5] px-4 py-3 text-sm text-[#0A1628]/70 bg-white focus:outline-none focus:border-[#C9A84C] transition-colors">
-                    <option value="">Selecione uma área</option>
-                    <option>Contratos</option>
-                    <option>Recuperação Judicial</option>
-                    <option>Direito Imobiliário</option>
-                    <option>Direito Tributário</option>
-                    <option>Outro</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-[10px] tracking-[0.25em] uppercase text-[#0A1628]/45 mb-1.5">Mensagem</label>
-                  <textarea
-                    rows={4}
-                    placeholder="Descreva brevemente como podemos ajudar..."
-                    className="w-full border border-[#E0DCD5] px-4 py-3 text-sm text-[#0A1628] bg-transparent focus:outline-none focus:border-[#C9A84C] transition-colors resize-none placeholder:text-[#0A1628]/30"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3.5 bg-[#0A1628] text-white text-[11px] tracking-[0.25em] uppercase font-medium hover:bg-[#C9A84C] hover:text-[#0A1628] transition-colors duration-300 flex items-center justify-center gap-2"
-                >
-                  Enviar Mensagem <ArrowUpRight size={14} />
-                </button>
-              </form>
-            </div>
+              );
+              return item.href ? (
+                <a key={i} href={item.href} style={{ display: "block", textDecoration: "none" }}>{inner}</a>
+              ) : (
+                <div key={i}>{inner}</div>
+              );
+            })}
 
-            {/* Info */}
-            <div className="flex flex-col gap-4">
-              {contactInfo.map((item, i) => {
-                const Icon = item.icon;
-                const inner = (
-                  <div className="flex items-start gap-4 p-5 bg-white border border-transparent hover:border-[#C9A84C]/30 transition-colors group">
-                    <div className="w-10 h-10 shrink-0 flex items-center justify-center border border-[#C9A84C]/25 group-hover:bg-[#C9A84C]/10 transition-colors">
-                      <Icon size={15} className="text-[#C9A84C]" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[10px] tracking-[0.25em] uppercase text-[#0A1628]/35 mb-1">{item.label}</p>
-                      <p className="text-sm text-[#0A1628] font-medium whitespace-pre-line leading-relaxed break-words">{item.value}</p>
-                    </div>
-                  </div>
-                );
-                return item.href ? (
-                  <a key={i} href={item.href} className="block">{inner}</a>
-                ) : (
-                  <div key={i}>{inner}</div>
-                );
-              })}
-
-              {/* Map placeholder */}
-              <div className="relative h-40 bg-[#0A1628] overflow-hidden mt-1">
-                <div
-                  aria-hidden
-                  className="absolute inset-0 opacity-[0.05]"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)",
-                    backgroundSize: "28px 28px",
-                  }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center text-center">
-                  <div>
-                    <MapPin size={22} className="text-[#C9A84C] mx-auto mb-2" />
-                    <p className="text-white/50 text-[10px] tracking-[0.3em] uppercase">São Bernardo do Campo</p>
-                    <p className="text-white/25 text-[10px] mt-0.5">ABC Paulista – SP</p>
-                  </div>
-                </div>
+            {/* Map block */}
+            <div style={{ position: "relative", height: "160px", background: "#0d1e35", overflow: "hidden" }}>
+              <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.06, backgroundImage: "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)", backgroundSize: "28px 28px" }} />
+              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                <MapPin size={20} style={{ color: "#C9A84C" }} />
+                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "11px", letterSpacing: "0.3em", textTransform: "uppercase" }}>São Bernardo do Campo</p>
+                <p style={{ color: "rgba(255,255,255,0.2)", fontSize: "11px" }}>ABC Paulista – SP</p>
               </div>
             </div>
           </div>

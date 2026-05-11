@@ -1,111 +1,86 @@
+"use client";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const pages = [
-  { label: "Início", href: "#inicio" },
-  { label: "Escritório de Advocacia", href: "#escritorio" },
-  { label: "Serviços de Advocacia", href: "#servicos" },
-  { label: "Notícias", href: "#noticias" },
-  { label: "Contato e Localização", href: "#contato" },
+  ["Início", "#inicio"], ["Escritório de Advocacia", "#escritorio"],
+  ["Serviços de Advocacia", "#servicos"], ["Notícias", "#noticias"],
+  ["Contato e Localização", "#contato"],
 ];
-
-const specialties = [
-  "Contratos",
-  "Recuperação Judicial e Falência",
-  "Direito Imobiliário",
-  "Direito Tributário",
-  "Direitos Trabalhistas",
-  "Serviços Tributários",
-];
+const specs = ["Contratos", "Recuperação Judicial e Falência", "Direito Imobiliário", "Direito Tributário", "Direitos Trabalhistas", "Serviços Tributários"];
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#060E1A] text-white/50 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 md:px-12 py-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer style={{ width: "100%", background: "#030913", color: "rgba(255,255,255,0.45)", overflow: "hidden" }}>
+      {/* Top gold rule */}
+      <div style={{ height: "2px", background: "linear-gradient(90deg,transparent,#C9A84C 30%,#E8C96E 50%,#C9A84C 70%,transparent)" }} />
+
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "5rem 5rem 4rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1.5fr", gap: "4rem" }}>
+
           {/* Brand */}
           <div>
-            <p
-              className="text-xl font-bold tracking-[0.12em] text-white mb-0.5"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              BIZARRO
+            <p style={{ fontFamily: "var(--font-playfair)", fontSize: "1.5rem", fontWeight: 700, letterSpacing: "0.12em", color: "#fff" }}>BIZARRO</p>
+            <p style={{ fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase", color: "#C9A84C", fontWeight: 500, marginBottom: "1.5rem" }}>Advogados Associados</p>
+            <div style={{ width: "40px", height: "1px", background: "#C9A84C", marginBottom: "1.5rem" }} />
+            <p style={{ fontSize: "13px", lineHeight: 1.8, marginBottom: "2rem", maxWidth: "260px" }}>
+              Excelência jurídica com propósito. Protegendo os seus interesses com estratégia, ética e comprometimento.
             </p>
-            <p className="text-[9px] tracking-[0.28em] text-[#C9A84C] uppercase font-light mb-4">
-              Advogados Associados
-            </p>
-            <div className="gold-line mb-5" />
-            <p className="text-[13px] leading-relaxed mb-6">
-              Excelência jurídica com propósito. Protegendo os seus interesses
-              com estratégia, ética e comprometimento.
-            </p>
-            <div className="space-y-2 text-[13px]">
-              <a href="tel:+551143374200" className="flex items-center gap-2 hover:text-[#C9A84C] transition-colors">
-                <Phone size={12} className="text-[#C9A84C] shrink-0" />
-                (11) 4337-4200
-              </a>
-              <a href="mailto:sidnei@bizarro.adv.br" className="flex items-center gap-2 hover:text-[#C9A84C] transition-colors break-all">
-                <Mail size={12} className="text-[#C9A84C] shrink-0" />
-                sidnei@bizarro.adv.br
-              </a>
-              <div className="flex items-start gap-2">
-                <MapPin size={12} className="text-[#C9A84C] shrink-0 mt-0.5" />
-                <span>Al. Dona Tereza Cristina, 372<br />Jardim Nova Petropolis<br />São Bernardo do Campo – SP</span>
-              </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {[
+                { Icon: Phone, t: "(11) 4337-4200", h: "tel:+551143374200" },
+                { Icon: Mail, t: "sidnei@bizarro.adv.br", h: "mailto:sidnei@bizarro.adv.br" },
+                { Icon: MapPin, t: "Al. Dona Tereza Cristina, 372\nJardim Nova Petropolis\nSão Bernardo do Campo – SP", h: null },
+              ].map(({ Icon, t, h }, i) => {
+                const inner = (
+                  <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", fontSize: "12px" }}>
+                    <Icon size={12} style={{ color: "#C9A84C", flexShrink: 0, marginTop: "2px" }} />
+                    <span style={{ lineHeight: 1.65, whiteSpace: "pre-line" }}>{t}</span>
+                  </div>
+                );
+                return h ? <a key={i} href={h} style={{ color: "inherit", textDecoration: "none" }}>{inner}</a> : <div key={i}>{inner}</div>;
+              })}
             </div>
           </div>
 
           {/* Pages */}
           <div>
-            <h4 className="text-[10px] tracking-[0.28em] uppercase text-[#C9A84C] mb-5 font-medium">
-              Páginas
-            </h4>
-            <ul className="space-y-3">
-              {pages.map((p) => (
-                <li key={p.href}>
-                  <a
-                    href={p.href}
-                    className="text-[13px] hover:text-[#C9A84C] transition-colors flex items-center gap-1.5 group"
-                  >
-                    <span className="text-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity">›</span>
-                    {p.label}
-                  </a>
-                </li>
+            <p style={{ fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase", color: "#C9A84C", fontWeight: 600, marginBottom: "1.5rem" }}>Páginas</p>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {pages.map(([l, h]) => (
+                <li key={h}><a href={h} style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
+                >
+                  <span style={{ color: "#C9A84C", fontSize: "10px" }}>›</span> {l}
+                </a></li>
               ))}
             </ul>
           </div>
 
           {/* Specialties */}
           <div>
-            <h4 className="text-[10px] tracking-[0.28em] uppercase text-[#C9A84C] mb-5 font-medium">
-              Especialidades
-            </h4>
-            <ul className="space-y-3">
-              {specialties.map((s) => (
-                <li key={s}>
-                  <a
-                    href="#servicos"
-                    className="text-[13px] hover:text-[#C9A84C] transition-colors flex items-center gap-1.5 group"
-                  >
-                    <span className="text-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity">›</span>
-                    {s}
-                  </a>
-                </li>
+            <p style={{ fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase", color: "#C9A84C", fontWeight: 600, marginBottom: "1.5rem" }}>Especialidades</p>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {specs.map((s) => (
+                <li key={s}><a href="#servicos" style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
+                >
+                  <span style={{ color: "#C9A84C", fontSize: "10px" }}>›</span> {s}
+                </a></li>
               ))}
             </ul>
           </div>
 
           {/* CTA */}
           <div>
-            <h4 className="text-[10px] tracking-[0.28em] uppercase text-[#C9A84C] mb-5 font-medium">
-              Consulta Jurídica
-            </h4>
-            <p className="text-[13px] leading-relaxed mb-6">
-              Agende uma consulta e descubra como podemos proteger seus
-              interesses com soluções personalizadas.
+            <p style={{ fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase", color: "#C9A84C", fontWeight: 600, marginBottom: "1.5rem" }}>Consulta Jurídica</p>
+            <p style={{ fontSize: "13px", lineHeight: 1.8, marginBottom: "2rem" }}>
+              Agende uma consulta e descubra como podemos proteger seus interesses com soluções personalizadas e eficazes.
             </p>
-            <a
-              href="#contato"
-              className="inline-block px-6 py-3 border border-[#C9A84C] text-[#C9A84C] text-[10px] tracking-[0.25em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-200"
+            <a href="#contato" style={{ display: "inline-block", padding: "0.85rem 1.75rem", border: "1px solid #C9A84C", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#C9A84C"; (e.currentTarget as HTMLElement).style.color = "#060E1A"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
             >
               Agendar Consulta
             </a>
@@ -113,10 +88,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-[10px] tracking-wider uppercase text-white/25">
-          <p>© {new Date().getFullYear()} Bizarro e Associados. Todos os direitos reservados.</p>
-          <p>OAB/SP</p>
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "1.25rem 5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", fontSize: "11px", letterSpacing: "0.08em", color: "rgba(255,255,255,0.18)" }}>
+          <span>© {new Date().getFullYear()} Bizarro e Associados. Todos os direitos reservados.</span>
+          <span>OAB/SP</span>
         </div>
       </div>
     </footer>

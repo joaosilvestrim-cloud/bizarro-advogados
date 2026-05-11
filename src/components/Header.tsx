@@ -1,118 +1,87 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import { Phone, Mail, Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
-const navLinks = [
-  { label: "Início", href: "#inicio" },
-  { label: "Escritório", href: "#escritorio" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Notícias", href: "#noticias" },
-  { label: "Contato", href: "#contato" },
+const links = [
+  { l: "Início", h: "#inicio" },
+  { l: "Escritório", h: "#escritorio" },
+  { l: "Serviços", h: "#servicos" },
+  { l: "Notícias", h: "#noticias" },
+  { l: "Contato", h: "#contato" },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    const fn = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-400 ${
-        scrolled
-          ? "bg-[#0A1628]/96 backdrop-blur-sm shadow-[0_2px_20px_rgba(0,0,0,0.35)]"
-          : "bg-transparent"
-      }`}
-    >
-      {/* Top info bar */}
-      {!scrolled && (
-        <div className="hidden md:flex items-center justify-end gap-6 px-8 lg:px-16 py-2 border-b border-white/8 text-[11px] text-white/50">
-          <a href="tel:+551143374200" className="flex items-center gap-1.5 hover:text-[#C9A84C] transition-colors">
-            <Phone size={11} /> (11) 4337-4200
-          </a>
-          <a href="mailto:sidnei@bizarro.adv.br" className="flex items-center gap-1.5 hover:text-[#C9A84C] transition-colors">
-            <Mail size={11} /> sidnei@bizarro.adv.br
-          </a>
-        </div>
-      )}
+  const navBg = scrolled
+    ? "rgba(6,14,26,0.97)"
+    : "linear-gradient(180deg,rgba(6,14,26,0.85) 0%,transparent 100%)";
 
-      {/* Main nav row */}
-      <div className="flex items-center justify-between px-6 md:px-8 lg:px-16 py-4">
+  return (
+    <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: navBg, backdropFilter: scrolled ? "blur(12px)" : "none", borderBottom: scrolled ? "1px solid rgba(201,168,76,0.12)" : "none", transition: "all 0.4s ease" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", height: scrolled ? "64px" : "72px", transition: "height 0.3s ease" }}>
+
         {/* Logo */}
-        <a href="#inicio" className="flex flex-col leading-none shrink-0">
-          <span
-            className="text-xl font-bold tracking-[0.12em] text-white"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            BIZARRO
-          </span>
-          <span className="text-[9px] tracking-[0.28em] text-[#C9A84C] uppercase font-light">
-            Advogados Associados
-          </span>
+        <a href="#inicio" style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: "1px" }}>
+          <span style={{ fontFamily: "var(--font-playfair)", fontSize: "1.35rem", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", lineHeight: 1 }}>BIZARRO</span>
+          <span style={{ fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase", color: "#C9A84C", fontWeight: 500, lineHeight: 1 }}>Advogados Associados</span>
         </a>
 
-        {/* Desktop links */}
-        <nav className="hidden md:flex items-center gap-7 lg:gap-9">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-[11px] tracking-[0.18em] uppercase text-white/70 hover:text-[#C9A84C] transition-colors duration-200 font-light"
-            >
-              {link.label}
-            </a>
+        {/* Desktop nav */}
+        <nav style={{ display: "flex", alignItems: "center", gap: "2.5rem" }} className="hidden-mobile">
+          {links.map((l) => (
+            <a key={l.h} href={l.h} style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", textDecoration: "none", fontWeight: 400, transition: "color 0.2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#C9A84C")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+            >{l.l}</a>
           ))}
         </nav>
 
         {/* CTA */}
-        <a
-          href="#contato"
-          className="hidden md:inline-flex items-center px-5 py-2 border border-[#C9A84C] text-[#C9A84C] text-[10px] tracking-[0.25em] uppercase font-semibold hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-200 shrink-0"
-        >
-          Consulta
-        </a>
+        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }} className="hidden-mobile">
+          <a href="tel:+551143374200" style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "12px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
+            <Phone size={12} style={{ color: "#C9A84C" }} />
+            (11) 4337-4200
+          </a>
+          <a href="#contato" style={{ padding: "0.55rem 1.4rem", border: "1px solid #C9A84C", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", transition: "all 0.2s" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#C9A84C"; (e.currentTarget as HTMLElement).style.color = "#0A1628"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
+          >Consulta</a>
+        </div>
 
         {/* Mobile toggle */}
-        <button
-          className="md:hidden text-white p-1"
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Menu"
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        <button onClick={() => setOpen(v => !v)} style={{ display: "none", background: "none", border: "none", color: "#fff", cursor: "pointer", padding: "0.25rem" }} className="show-mobile">
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#0A1628] border-t border-white/8 px-6 py-6">
-          <ul className="flex flex-col gap-4 mb-6">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-sm tracking-widest uppercase text-white/70 hover:text-[#C9A84C] transition-colors"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="pt-5 border-t border-white/8 flex flex-col gap-2 text-xs text-white/45">
-            <a href="tel:+551143374200" className="flex items-center gap-2">
-              <Phone size={12} className="text-[#C9A84C]" /> (11) 4337-4200
+      {open && (
+        <div style={{ background: "#060E1A", borderTop: "1px solid rgba(201,168,76,0.15)", padding: "1.5rem 2.5rem 2rem" }}>
+          {links.map((l) => (
+            <a key={l.h} href={l.h} onClick={() => setOpen(false)} style={{ display: "block", padding: "0.75rem 0", fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", textDecoration: "none", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+              {l.l}
             </a>
-            <a href="mailto:sidnei@bizarro.adv.br" className="flex items-center gap-2">
-              <Mail size={12} className="text-[#C9A84C]" /> sidnei@bizarro.adv.br
-            </a>
-          </div>
+          ))}
+          <a href="#contato" style={{ display: "inline-block", marginTop: "1.5rem", padding: "0.75rem 2rem", background: "#C9A84C", color: "#0A1628", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
+            Consulta
+          </a>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 900px) {
+          .hidden-mobile { display: none !important; }
+          .show-mobile { display: block !important; }
+        }
+      `}</style>
     </header>
   );
 }
