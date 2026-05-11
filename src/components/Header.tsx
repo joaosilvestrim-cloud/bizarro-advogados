@@ -37,7 +37,7 @@ export default function Header() {
         {/* Desktop nav */}
         <nav style={{ display: "flex", alignItems: "center", gap: "2.5rem" }} className="hidden-mobile">
           {links.map((l) => (
-            <a key={l.h} href={l.h} style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", textDecoration: "none", fontWeight: 400, transition: "color 0.2s" }}
+            <a key={l.h} href={l.h} className="nav-link" style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", textDecoration: "none", fontWeight: 400, transition: "color 0.25s" }}
               onMouseEnter={e => (e.currentTarget.style.color = "#C9A84C")}
               onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
             >{l.l}</a>
