@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Bizarro Advogados Associados | Advocacia Premium em São Bernardo do Campo",
   description:
-    "Escritório de advocacia especializado em Direito Tributário, Trabalhista, Contratos, Direito Imobiliário e Recuperação Judicial. Localizado em São Bernardo do Campo - SP.",
+    "Escritório de advocacia especializado em Direito Tributário, Trabalhista, Contratos, Direito Imobiliário e Recuperação Judicial. Localizado na Rua Mediterrâneo, 290 — Jardim do Mar, São Bernardo do Campo - SP.",
   keywords:
     "advogado, advocacia, direito tributário, direito trabalhista, contratos, direito imobiliário, São Bernardo do Campo, ABC paulista",
   openGraph: {

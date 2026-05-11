@@ -29,7 +29,7 @@ export default function Footer() {
               {[
                 { Icon: Phone, t: "(11) 4337-4200", h: "tel:+551143374200" },
                 { Icon: Mail, t: "sidnei@bizarro.adv.br", h: "mailto:sidnei@bizarro.adv.br" },
-                { Icon: MapPin, t: "Al. Dona Tereza Cristina, 372\nJardim Nova Petropolis\nSão Bernardo do Campo – SP", h: null },
+                { Icon: MapPin, t: "Rua Mediterrâneo, nº 290 — Salas 116/118\nJardim do Mar\nSão Bernardo do Campo – SP", h: "https://maps.app.goo.gl/EUUYWGcLPmG74b2KA" },
               ].map(({ Icon, t, h }, i) => {
                 const inner = (
                   <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", fontSize: "12px" }}>

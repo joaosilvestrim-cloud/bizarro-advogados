@@ -43,7 +43,7 @@ export default function Hero() {
           <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "clamp(0.95rem,1.3vw,1.1rem)", lineHeight: 1.8, maxWidth: "520px", fontWeight: 300, marginBottom: "3rem" }}>
             Mais de uma década protegendo os interesses dos nossos clientes com
             estratégia, ética e comprometimento. Soluções jurídicas precisas para
-            empresas e pessoas em São Bernardo do Campo – ABC Paulista.
+            empresas e pessoas em São Bernardo do Campo – SP.
           </p>
 
           {/* CTAs */}
