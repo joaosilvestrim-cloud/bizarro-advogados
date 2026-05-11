@@ -26,14 +26,14 @@ export default function Header() {
 
   return (
     <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: navBg, backdropFilter: scrolled ? "blur(12px)" : "none", borderBottom: scrolled ? "1px solid rgba(201,168,76,0.12)" : "none", transition: "all 0.4s ease" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", height: scrolled ? "64px" : "72px", transition: "height 0.3s ease" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", height: scrolled ? "72px" : "84px", transition: "height 0.3s ease" }}>
 
         {/* Logo */}
         <a href="#inicio" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
           <img
             src="/logo.png"
             alt="Bizarro Advogados Associados"
-            style={{ height: scrolled ? "36px" : "42px", width: "auto", transition: "height 0.3s ease" }}
+            style={{ height: scrolled ? "90px" : "110px", width: "auto", maxWidth: "300px", objectFit: "contain", margin: "-16px 0", transition: "height 0.3s ease" }}
           />
         </a>
 
