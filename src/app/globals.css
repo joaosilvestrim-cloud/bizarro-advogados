@@ -1,29 +1,115 @@
 @import "tailwindcss";
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; overflow-x: hidden; }
-
-body {
-  overflow-x: hidden;
-  background: #fff;
-  color: #0A1628;
-  font-family: var(--font-inter, 'Inter', sans-serif);
-  -webkit-font-smoothing: antialiased;
-}
-
+body { overflow-x: hidden; background: #fff; color: #0A1628; font-family: var(--font-inter, 'Inter', sans-serif); -webkit-font-smoothing: antialiased; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #060E1A; }
 ::-webkit-scrollbar-thumb { background: #C9A84C; }
 
-.fade-up {
+/* ─── Keyframes ─────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Floating balance animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(0.4deg); }
+  66%       { transform: translateY(-4px) rotate(-0.3deg); }
+}
+
+/* Balance beam slight tilt */
+@keyframes balance {
+  0%, 100% { transform: rotate(0deg); }
+  40%       { transform: rotate(1.5deg); }
+  70%       { transform: rotate(-1deg); }
+}
+
+/* SVG line draw-in */
+@keyframes draw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Gold shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Gentle pulse glow */
+@keyframes glow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.75; }
+}
+
+/* Orbit rotation */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+/* Scale paragraph symbol */
+@keyframes floatSymbol {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.06; }
+  50%       { transform: translateY(-12px) rotate(3deg); opacity: 0.10; }
+}
+
+/* Hero line reveal */
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Counter roll-up */
+@keyframes countUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ─── Scroll-reveal ─────────────────────────────── */
+
+.reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-.fade-up.d1 { transition-delay: 0.1s; }
-.fade-up.d2 { transition-delay: 0.2s; }
-.fade-up.d3 { transition-delay: 0.3s; }
+.reveal.visible      { opacity: 1; transform: translateY(0); }
+.reveal.d1           { transition-delay: 0.1s; }
+.reveal.d2           { transition-delay: 0.2s; }
+.reveal.d3           { transition-delay: 0.3s; }
+.reveal.d4           { transition-delay: 0.4s; }
 
-.gold { background: linear-gradient(135deg,#C9A84C 0%,#E8C96E 50%,#A07830 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+/* Legacy alias */
+.fade-up             { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+.fade-up.visible     { opacity: 1; transform: translateY(0); }
+.fade-up.d1          { transition-delay: 0.1s; }
+.fade-up.d2          { transition-delay: 0.2s; }
+.fade-up.d3          { transition-delay: 0.3s; }
+
+/* ─── Utility ───────────────────────────────────── */
+.gold-text {
+  background: linear-gradient(135deg, #C9A84C 0%, #E8C96E 50%, #A07830 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
