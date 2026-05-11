@@ -9,121 +9,231 @@ export default function Hero() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const timer = setTimeout(() => {
-      el.classList.add("visible");
-    }, 80);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => el.classList.add("visible"), 100);
+    return () => clearTimeout(t);
   }, []);
 
   return (
     <section
       id="inicio"
-      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-[#0A1628] overflow-hidden"
+      style={{
+        position: "relative",
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#0A1628",
+        overflow: "hidden",
+      }}
     >
-      {/* Subtle grid */}
+      {/* Grid bg */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.035] pointer-events-none"
         style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.035,
           backgroundImage:
             "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)",
           backgroundSize: "72px 72px",
+          pointerEvents: "none",
         }}
       />
 
-      {/* Glow blobs */}
+      {/* Glow */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none"
         style={{
+          position: "absolute",
+          inset: 0,
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(30,58,95,0.5) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(201,168,76,0.08) 0%, transparent 70%)",
+          pointerEvents: "none",
         }}
       />
 
       {/* Content */}
       <div
         ref={ref}
-        className="fade-up relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 text-center"
+        style={{
+          position: "relative",
+          zIndex: 10,
+          width: "100%",
+          maxWidth: "860px",
+          margin: "0 auto",
+          padding: "6rem 2rem 4rem",
+          textAlign: "center",
+        }}
       >
-        {/* Label */}
-        <p className="inline-block mb-8 px-4 py-1.5 border border-[#C9A84C]/40 text-[#C9A84C] text-[11px] tracking-[0.35em] uppercase font-medium">
+        {/* Badge */}
+        <div
+          style={{
+            display: "inline-block",
+            marginBottom: "2rem",
+            padding: "0.4rem 1.25rem",
+            border: "1px solid rgba(201,168,76,0.4)",
+            fontSize: "11px",
+            letterSpacing: "0.35em",
+            color: "#C9A84C",
+            textTransform: "uppercase",
+            fontWeight: 500,
+          }}
+        >
           Advocacia Especializada
-        </p>
+        </div>
 
         {/* Heading */}
         <h1
-          className="text-[clamp(3rem,8vw,6rem)] font-bold text-white leading-[1] mb-4"
-          style={{ fontFamily: "var(--font-playfair)" }}
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontSize: "clamp(3.5rem,7vw,6rem)",
+            fontWeight: 700,
+            color: "#ffffff",
+            lineHeight: 1,
+            margin: 0,
+          }}
         >
           Excelência
         </h1>
         <h1
-          className="text-[clamp(3rem,8vw,6rem)] font-bold italic text-gold-gradient leading-[1] mb-4"
-          style={{ fontFamily: "var(--font-playfair)" }}
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontSize: "clamp(3.5rem,7vw,6rem)",
+            fontWeight: 700,
+            fontStyle: "italic",
+            background: "linear-gradient(135deg,#C9A84C 0%,#E8C96E 50%,#A07830 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            lineHeight: 1,
+            margin: "0.15rem 0",
+          }}
         >
           Jurídica
         </h1>
         <h2
-          className="text-[clamp(1.5rem,4vw,3rem)] font-light text-white/80 tracking-wide mb-10"
-          style={{ fontFamily: "var(--font-playfair)" }}
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontSize: "clamp(1.75rem,3.5vw,3rem)",
+            fontWeight: 300,
+            color: "rgba(255,255,255,0.75)",
+            letterSpacing: "0.05em",
+            margin: "0 0 2rem",
+          }}
         >
           com Propósito
         </h2>
 
         {/* Divider */}
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="h-px w-14 bg-gradient-to-r from-transparent to-[#C9A84C]" />
-          <div className="w-1.5 h-1.5 rotate-45 bg-[#C9A84C]" />
-          <div className="h-px w-14 bg-gradient-to-l from-transparent to-[#C9A84C]" />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginBottom: "2rem" }}>
+          <div style={{ height: "1px", width: "56px", background: "linear-gradient(90deg,transparent,#C9A84C)" }} />
+          <div style={{ width: "6px", height: "6px", transform: "rotate(45deg)", background: "#C9A84C" }} />
+          <div style={{ height: "1px", width: "56px", background: "linear-gradient(270deg,transparent,#C9A84C)" }} />
         </div>
 
         {/* Subtitle */}
-        <p className="text-white/55 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-10 font-light">
+        <p
+          style={{
+            color: "rgba(255,255,255,0.5)",
+            fontSize: "clamp(0.9rem,1.5vw,1.1rem)",
+            lineHeight: 1.75,
+            maxWidth: "560px",
+            margin: "0 auto 2.5rem",
+            fontWeight: 300,
+          }}
+        >
           Mais de uma década protegendo os interesses dos nossos clientes com
           estratégia, ética e comprometimento. Soluções jurídicas precisas para
           empresas e pessoas em São Bernardo do Campo.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1rem",
+            marginBottom: "3.5rem",
+          }}
+        >
           <a
             href="#servicos"
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#C9A84C] text-[#0A1628] text-[11px] tracking-[0.2em] uppercase font-bold hover:bg-[#E8C96E] transition-colors duration-200"
+            style={{
+              display: "inline-block",
+              padding: "1rem 2.5rem",
+              background: "#C9A84C",
+              color: "#0A1628",
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              textDecoration: "none",
+            }}
           >
             Nossas Especialidades →
           </a>
           <a
             href="#escritorio"
-            className="w-full sm:w-auto px-8 py-3.5 border border-white/25 text-white/75 text-[11px] tracking-[0.2em] uppercase font-light hover:border-[#C9A84C] hover:text-[#C9A84C] transition-colors duration-200"
+            style={{
+              display: "inline-block",
+              padding: "1rem 2.5rem",
+              border: "1px solid rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,0.75)",
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              fontWeight: 300,
+              textDecoration: "none",
+            }}
           >
             Sobre o Escritório
           </a>
         </div>
 
         {/* Stats */}
-        <div className="flex flex-wrap items-center justify-center gap-10 pt-10 border-t border-white/10">
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "3rem",
+            paddingTop: "2.5rem",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
           {[
             { n: "10+", label: "Anos de Atuação" },
             { n: "500+", label: "Casos Resolvidos" },
             { n: "4", label: "Áreas de Especialização" },
           ].map((s) => (
-            <div key={s.label} className="text-center">
+            <div key={s.label} style={{ textAlign: "center" }}>
               <p
-                className="text-3xl font-bold text-gold-gradient"
-                style={{ fontFamily: "var(--font-playfair)" }}
+                style={{
+                  fontFamily: "var(--font-playfair)",
+                  fontSize: "2rem",
+                  fontWeight: 700,
+                  background: "linear-gradient(135deg,#C9A84C,#E8C96E)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  margin: 0,
+                }}
               >
                 {s.n}
               </p>
-              <p className="text-[10px] tracking-[0.25em] uppercase text-white/35 mt-1">
+              <p
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.25em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.3)",
+                  marginTop: "0.25rem",
+                }}
+              >
                 {s.label}
               </p>
             </div>
@@ -131,13 +241,26 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll hint */}
+      {/* Scroll */}
       <a
         href="#escritorio"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/25 hover:text-[#C9A84C] transition-colors"
+        style={{
+          position: "absolute",
+          bottom: "2rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.35rem",
+          color: "rgba(255,255,255,0.2)",
+          textDecoration: "none",
+        }}
       >
-        <span className="text-[9px] tracking-[0.3em] uppercase">Scroll</span>
-        <ArrowDown size={14} className="animate-bounce" />
+        <span style={{ fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase" }}>
+          Scroll
+        </span>
+        <ArrowDown size={14} />
       </a>
     </section>
   );

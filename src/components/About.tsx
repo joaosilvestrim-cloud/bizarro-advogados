@@ -3,22 +3,18 @@
 import { useEffect, useRef } from "react";
 import { CheckCircle2 } from "lucide-react";
 
-function useReveal(delay = 0) {
+function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => el.classList.add("visible"), delay);
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
       { threshold: 0.08 }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [delay]);
+  }, []);
   return ref;
 }
 
@@ -36,122 +32,85 @@ const philosophyPoints = [
   { n: "04", text: "Respeito, Incentivo e Participação é o mínimo que nossos colaboradores merecem" },
 ];
 
+const containerStyle: React.CSSProperties = {
+  width: "100%",
+  maxWidth: "1100px",
+  margin: "0 auto",
+  padding: "0 2rem",
+};
+
 export default function About() {
-  const r1 = useReveal(0);
-  const r2 = useReveal(0);
-  const r3 = useReveal(0);
+  const r1 = useReveal();
+  const r2 = useReveal();
+  const r3 = useReveal();
 
   return (
-    <section id="escritorio" className="w-full bg-[#F5F3EE] overflow-hidden">
+    <section id="escritorio" style={{ width: "100%", background: "#F5F3EE", overflow: "hidden" }}>
       {/* Top rule */}
-      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
+      <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,#C9A84C,transparent)" }} />
 
       {/* ── Who we are ── */}
-      <div className="max-w-6xl mx-auto px-6 md:px-12 py-24">
-        <div ref={r1} className="fade-up grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div style={{ ...containerStyle, paddingTop: "6rem", paddingBottom: "6rem" }}>
+        <div ref={r1} className="fade-up" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))", gap: "4rem", alignItems: "center" }}>
           {/* Text */}
-          <div className="min-w-0">
-            <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
+          <div style={{ minWidth: 0 }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.4em", color: "#C9A84C", textTransform: "uppercase", fontWeight: 500, marginBottom: "0.75rem" }}>
               Escritório de Advocacia
             </p>
-            <h2
-              className="text-4xl md:text-5xl font-bold text-[#0A1628] leading-tight mb-4"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
+            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(2.5rem,4vw,3.5rem)", fontWeight: 700, color: "#0A1628", lineHeight: 1.1, marginBottom: "1.5rem" }}>
               Quem <br />
-              <span className="italic text-[#C9A84C]">Somos</span>
+              <span style={{ fontStyle: "italic", color: "#C9A84C" }}>Somos</span>
             </h2>
-            <div className="gold-line mb-7" />
-            <p className="text-[#0A1628]/65 leading-relaxed mb-4 text-[15px]">
-              O{" "}
-              <strong className="text-[#0A1628] font-semibold">
-                Bizarro Advogados Associados
-              </strong>{" "}
-              está localizado em São Bernardo do Campo, ABC — São Paulo. Criamos
-              uma organização de serviços jurídicos que reúne profissionais do
-              mais alto nível, com visão de futuro e objetivo claro.
+            <div style={{ width: "48px", height: "2px", background: "linear-gradient(90deg,#C9A84C,#E8C96E)", marginBottom: "1.75rem" }} />
+            <p style={{ color: "rgba(10,22,40,0.65)", lineHeight: 1.75, fontSize: "15px", marginBottom: "1rem" }}>
+              O <strong style={{ color: "#0A1628", fontWeight: 600 }}>Bizarro Advogados Associados</strong> está
+              localizado em São Bernardo do Campo, ABC — São Paulo. Criamos uma organização de serviços
+              jurídicos que reúne profissionais do mais alto nível, com visão de futuro e objetivo claro.
             </p>
-            <p className="text-[#0A1628]/65 leading-relaxed text-[15px]">
-              Investimos em pesquisa e desenvolvimento de técnicas capazes de
-              dar respostas inovadoras em ambientes em constante mutação, sempre
-              com foco no lucro e no sucesso de nossos parceiros.
+            <p style={{ color: "rgba(10,22,40,0.65)", lineHeight: 1.75, fontSize: "15px" }}>
+              Investimos em pesquisa e desenvolvimento de técnicas capazes de dar respostas inovadoras
+              em ambientes em constante mutação, sempre com foco no lucro e no sucesso de nossos parceiros.
             </p>
-            <blockquote className="mt-8 pl-4 border-l-2 border-[#C9A84C]">
-              <p
-                className="italic text-[#0A1628]/55 text-base"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                "É preciso encontrar os valores que sejam a essência do negócio
-                e o conduzam até o futuro"
+            <blockquote style={{ marginTop: "2rem", paddingLeft: "1rem", borderLeft: "2px solid #C9A84C" }}>
+              <p style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", color: "rgba(10,22,40,0.55)", fontSize: "1rem" }}>
+                "É preciso encontrar os valores que sejam a essência do negócio e o conduzam até o futuro"
               </p>
             </blockquote>
           </div>
 
-          {/* Visual block */}
-          <div className="relative w-full max-w-sm mx-auto md:mx-0">
-            {/* Border accent */}
-            <div className="absolute -top-3 -left-3 w-full h-full border border-[#C9A84C]/20 pointer-events-none" />
-            {/* Card */}
-            <div className="relative bg-[#0A1628] aspect-[3/4] flex items-center justify-center overflow-hidden">
-              {/* grid bg */}
-              <div
-                aria-hidden
-                className="absolute inset-0 opacity-[0.04]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)",
-                  backgroundSize: "36px 36px",
-                }}
-              />
-              <div className="relative z-10 text-center px-8">
-                <p
-                  className="text-7xl font-bold text-gold-gradient mb-3"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  Bz
-                </p>
-                <div className="h-px w-12 bg-[#C9A84C] mx-auto mb-3" />
-                <p className="text-white/30 text-[10px] tracking-[0.35em] uppercase">
-                  Desde 2010
-                </p>
+          {/* Visual */}
+          <div style={{ position: "relative", maxWidth: "360px" }}>
+            <div style={{ position: "absolute", top: "-12px", left: "-12px", right: "12px", bottom: "-12px", border: "1px solid rgba(201,168,76,0.2)", pointerEvents: "none" }} />
+            <div style={{ background: "#0A1628", aspectRatio: "3/4", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
+              <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)", backgroundSize: "36px 36px" }} />
+              <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "2rem" }}>
+                <p style={{ fontFamily: "var(--font-playfair)", fontSize: "5rem", fontWeight: 700, background: "linear-gradient(135deg,#C9A84C,#E8C96E,#A07830)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", lineHeight: 1, marginBottom: "0.75rem" }}>Bz</p>
+                <div style={{ height: "1px", width: "48px", background: "#C9A84C", margin: "0 auto 0.75rem" }} />
+                <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "10px", letterSpacing: "0.35em", textTransform: "uppercase" }}>Desde 2010</p>
               </div>
             </div>
-            {/* Bottom accent */}
-            <div className="absolute -bottom-3 -right-3 w-24 h-24 bg-[#C9A84C]/10 pointer-events-none" />
           </div>
         </div>
       </div>
 
       {/* ── Mission ── */}
-      <div className="bg-[#0A1628] py-20 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
+      <div style={{ background: "#0A1628", padding: "5rem 0", overflow: "hidden" }}>
+        <div style={containerStyle}>
           <div ref={r2} className="fade-up">
-            <div className="text-center mb-12">
-              <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
-                Nosso Propósito
-              </p>
-              <h3
-                className="text-3xl md:text-4xl font-bold text-white"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Nossa{" "}
-                <span className="italic text-[#C9A84C]">Missão</span>
+            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+              <p style={{ fontSize: "11px", letterSpacing: "0.4em", color: "#C9A84C", textTransform: "uppercase", fontWeight: 500, marginBottom: "0.75rem" }}>Nosso Propósito</p>
+              <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(2rem,3.5vw,2.75rem)", fontWeight: 700, color: "#fff" }}>
+                Nossa <span style={{ fontStyle: "italic", color: "#C9A84C" }}>Missão</span>
               </h3>
-              <p className="text-white/30 text-[10px] tracking-widest uppercase mt-2">
+              <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", marginTop: "0.5rem" }}>
                 Contribuir com o desenvolvimento empresarial
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))", gap: "0.75rem" }}>
               {missionPoints.map((pt, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 p-5 border border-white/8 hover:border-[#C9A84C]/30 transition-colors"
-                >
-                  <CheckCircle2
-                    size={16}
-                    className="text-[#C9A84C] mt-0.5 shrink-0"
-                  />
-                  <p className="text-white/65 text-sm leading-relaxed">{pt}</p>
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", padding: "1.25rem 1.5rem", border: "1px solid rgba(255,255,255,0.07)" }}>
+                  <CheckCircle2 size={16} style={{ color: "#C9A84C", marginTop: "2px", flexShrink: 0 }} />
+                  <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "14px", lineHeight: 1.65 }}>{pt}</p>
                 </div>
               ))}
             </div>
@@ -160,55 +119,33 @@ export default function About() {
       </div>
 
       {/* ── Philosophy ── */}
-      <div className="py-20 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
+      <div style={{ padding: "5rem 0", overflow: "hidden" }}>
+        <div style={containerStyle}>
           <div ref={r3} className="fade-up">
-            <div className="text-center mb-12">
-              <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
-                Valores
-              </p>
-              <h3
-                className="text-3xl md:text-4xl font-bold text-[#0A1628]"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Nossa{" "}
-                <span className="italic text-[#C9A84C]">Filosofia</span>
+            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+              <p style={{ fontSize: "11px", letterSpacing: "0.4em", color: "#C9A84C", textTransform: "uppercase", fontWeight: 500, marginBottom: "0.75rem" }}>Valores</p>
+              <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(2rem,3.5vw,2.75rem)", fontWeight: 700, color: "#0A1628" }}>
+                Nossa <span style={{ fontStyle: "italic", color: "#C9A84C" }}>Filosofia</span>
               </h3>
             </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: "1.25rem" }}>
               {philosophyPoints.map((pt) => (
-                <div
-                  key={pt.n}
-                  className="bg-white p-7 border-t-2 border-transparent hover:border-[#C9A84C] transition-colors duration-300 shadow-sm"
-                >
-                  <p
-                    className="text-5xl font-bold text-[#F5F3EE] mb-4 leading-none"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    {pt.n}
-                  </p>
-                  <p className="text-[#0A1628]/65 text-sm leading-relaxed">
-                    {pt.text}
-                  </p>
+                <div key={pt.n} style={{ background: "#fff", padding: "2rem 1.5rem", boxShadow: "0 1px 3px rgba(0,0,0,0.06)", borderTop: "2px solid transparent" }} className="philosophy-card">
+                  <p style={{ fontFamily: "var(--font-playfair)", fontSize: "3.5rem", fontWeight: 700, color: "#F5F3EE", lineHeight: 1, marginBottom: "1rem" }}>{pt.n}</p>
+                  <p style={{ color: "rgba(10,22,40,0.65)", fontSize: "14px", lineHeight: 1.65 }}>{pt.text}</p>
                 </div>
               ))}
             </div>
-
-            <blockquote className="mt-14 text-center">
-              <p
-                className="italic text-[#0A1628]/40 text-lg max-w-xl mx-auto"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                "Não fortalecerás a dignidade e o ânimo, se subtraires aos
-                homens a iniciativa e a liberdade."
+            <blockquote style={{ marginTop: "3.5rem", textAlign: "center" }}>
+              <p style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", color: "rgba(10,22,40,0.4)", fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto" }}>
+                "Não fortalecerás a dignidade e o ânimo, se subtraires aos homens a iniciativa e a liberdade."
               </p>
             </blockquote>
           </div>
         </div>
       </div>
 
-      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
+      <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,#C9A84C,transparent)" }} />
     </section>
   );
 }
