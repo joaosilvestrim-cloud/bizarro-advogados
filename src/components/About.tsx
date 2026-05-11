@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { BzCheck } from "./BzIcons";
 
 const E = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -186,8 +186,8 @@ export default function About() {
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#112240"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#0A1628"; }}
                 >
-                  <CheckCircle2 size={16} style={{
-                    color: "#C9A84C", flexShrink: 0, marginTop: "2px",
+                  <BzCheck size={16} color="#C9A84C" style={{
+                    flexShrink: 0, marginTop: "2px",
                     transition: "transform 0.3s ease",
                   }} />
                   <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "14px", lineHeight: 1.7 }}>{t}</p>

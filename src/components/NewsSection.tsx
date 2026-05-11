@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { BzArrow } from "./BzIcons";
 
 const E = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -72,7 +72,7 @@ function NewsCard({ n, idx, vis }: { n: typeof news[0]; idx: number; vis: boolea
         fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C9A84C",
       }}>
         Ler mais
-        <ArrowUpRight size={12} style={{
+        <BzArrow size={12} color="#C9A84C" style={{
           transition: `transform 0.3s ${E}`,
           transform: hovered ? "translate(3px,-3px)" : "translate(0,0)",
         }} />
@@ -117,7 +117,7 @@ export default function NewsSection() {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.3)"; }}
             >
-              Ver todas <ArrowUpRight size={13} />
+              Ver todas <BzArrow size={13} color="currentColor" />
             </a>
           </div>
         </div>

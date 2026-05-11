@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { BzMenu, BzClose, BzPhone } from "./BzIcons";
 
 const links = [
   { l: "Início", h: "#inicio" },
@@ -47,7 +47,7 @@ export default function Header() {
         {/* CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }} className="hidden-mobile">
           <a href="tel:+551143374200" style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "12px", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
-            <Phone size={12} style={{ color: "#C9A84C" }} />
+            <BzPhone size={12} color="#C9A84C" />
             (11) 4337-4200
           </a>
           <a href="#contato" style={{ padding: "0.55rem 1.4rem", border: "1px solid #C9A84C", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", transition: "all 0.2s" }}
@@ -58,7 +58,7 @@ export default function Header() {
 
         {/* Mobile toggle */}
         <button onClick={() => setOpen(v => !v)} style={{ display: "none", background: "none", border: "none", color: "#fff", cursor: "pointer", padding: "0.25rem" }} className="show-mobile">
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <BzClose size={22} color="#fff" /> : <BzMenu size={22} color="#fff" />}
         </button>
       </div>
 

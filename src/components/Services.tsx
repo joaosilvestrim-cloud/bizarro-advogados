@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, FileText, Building2, TrendingDown, Landmark } from "lucide-react";
+import { BzContract, BzRecovery, BzBuilding, BzScale, BzChevron, BzBullet } from "./BzIcons";
 
 const E = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -17,7 +17,7 @@ function useInView(threshold = 0.08) {
 
 const svcs = [
   {
-    Icon: FileText,
+    Icon: BzContract,
     title: "Contratos",
     desc: "Elaboração, análise e revisão estratégica de contratos empresariais e civis, com foco em segurança jurídica, prevenção de riscos e proteção dos interesses do cliente. Atuamos de forma personalizada para garantir relações comerciais mais seguras, transparentes e sustentáveis.",
     items: [
@@ -33,7 +33,7 @@ const svcs = [
     ],
   },
   {
-    Icon: TrendingDown,
+    Icon: BzRecovery,
     title: "Recuperação Judicial e Falência",
     desc: "Assessoria jurídica especializada em reestruturação empresarial, recuperação judicial e defesa em ações falimentares, atuando de forma estratégica para preservação da atividade empresarial, proteção patrimonial e reorganização financeira.",
     items: [
@@ -48,7 +48,7 @@ const svcs = [
     ],
   },
   {
-    Icon: Building2,
+    Icon: BzBuilding,
     title: "Direito Imobiliário",
     desc: "Atuação jurídica completa em negócios e operações imobiliárias, oferecendo segurança, transparência e redução de riscos em transações patrimoniais e relações contratuais.",
     items: [
@@ -65,7 +65,7 @@ const svcs = [
     ],
   },
   {
-    Icon: Landmark,
+    Icon: BzScale,
     title: "Direito Tributário",
     desc: "Planejamento tributário estratégico e defesa fiscal voltados à redução de riscos e otimização da carga tributária, sempre com atuação alinhada à legislação vigente e às necessidades do negócio.",
     items: [
@@ -151,7 +151,7 @@ function Card({ svc, idx, vis }: { svc: typeof svcs[0]; idx: number; vis: boolea
           }}
         >
           {open ? "Fechar" : "Ver serviços"}
-          <ChevronDown size={13} style={{
+          <BzChevron size={13} style={{
             transition: `transform 0.4s ${E}`,
             transform: open ? "rotate(180deg)" : "rotate(0)",
           }} />
@@ -168,7 +168,7 @@ function Card({ svc, idx, vis }: { svc: typeof svcs[0]; idx: number; vis: boolea
                   transform: open ? "none" : "translateX(-8px)",
                   transition: `opacity 0.4s ${E} ${i * 40}ms, transform 0.4s ${E} ${i * 40}ms`,
                 }}>
-                  <span style={{ color: "#C9A84C", flexShrink: 0, marginTop: "2px", fontSize: "12px" }}>—</span>
+                  <BzBullet />
                   {it}
                 </li>
               ))}

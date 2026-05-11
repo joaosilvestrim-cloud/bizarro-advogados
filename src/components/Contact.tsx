@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { BzPhone, BzMail, BzMapPin, BzClock } from "./BzIcons";
 
 const E = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -17,10 +17,10 @@ function useInView(threshold = 0.08) {
 }
 
 const info = [
-  { icon: Phone, label: "Telefone", value: "(11) 4337-4200", href: "tel:+551143374200" },
-  { icon: Mail, label: "E-mail", value: "sidnei@bizarro.adv.br", href: "mailto:sidnei@bizarro.adv.br" },
-  { icon: MapPin, label: "Endereço", value: "Rua Mediterrâneo, nº 290 — Salas 116/118\nJardim do Mar\nSão Bernardo do Campo – SP", href: "https://maps.app.goo.gl/EUUYWGcLPmG74b2KA" },
-  { icon: Clock, label: "Atendimento", value: "Segunda a Sexta\n09h – 18h", href: null },
+  { icon: BzPhone, label: "Telefone", value: "(11) 4337-4200", href: "tel:+551143374200" },
+  { icon: BzMail, label: "E-mail", value: "sidnei@bizarro.adv.br", href: "mailto:sidnei@bizarro.adv.br" },
+  { icon: BzMapPin, label: "Endereço", value: "Rua Mediterrâneo, nº 290 — Salas 116/118\nJardim do Mar\nSão Bernardo do Campo – SP", href: "https://maps.app.goo.gl/EUUYWGcLPmG74b2KA" },
+  { icon: BzClock, label: "Atendimento", value: "Segunda a Sexta\n09h – 18h", href: null },
 ];
 
 function InfoRow({ item, idx, vis }: { item: typeof info[0]; idx: number; vis: boolean }) {
@@ -236,7 +236,7 @@ export default function Contact() {
               >
                 <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.06, backgroundImage: "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)", backgroundSize: "28px 28px" }} />
                 <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
-                  <MapPin size={20} style={{ color: "#C9A84C", animation: "float 3s ease-in-out infinite" }} />
+                  <BzMapPin size={20} color="#C9A84C" style={{ animation: "float 3s ease-in-out infinite" }} />
                   <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "11px", letterSpacing: "0.3em", textTransform: "uppercase" }}>Ver no Google Maps</p>
                   <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "11px" }}>Rua Mediterrâneo, 290 — São Bernardo do Campo</p>
                 </div>

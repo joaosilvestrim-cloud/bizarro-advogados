@@ -1,5 +1,5 @@
 "use client";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { BzPhone, BzMail, BzMapPin, BzBullet } from "./BzIcons";
 
 const pages = [
   ["Início", "#inicio"], ["Escritório de Advocacia", "#escritorio"],
@@ -27,9 +27,9 @@ export default function Footer() {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {[
-                { Icon: Phone, t: "(11) 4337-4200", h: "tel:+551143374200" },
-                { Icon: Mail, t: "sidnei@bizarro.adv.br", h: "mailto:sidnei@bizarro.adv.br" },
-                { Icon: MapPin, t: "Rua Mediterrâneo, nº 290 — Salas 116/118\nJardim do Mar\nSão Bernardo do Campo – SP", h: "https://maps.app.goo.gl/EUUYWGcLPmG74b2KA" },
+                { Icon: BzPhone, t: "(11) 4337-4200", h: "tel:+551143374200" },
+                { Icon: BzMail, t: "sidnei@bizarro.adv.br", h: "mailto:sidnei@bizarro.adv.br" },
+                { Icon: BzMapPin, t: "Rua Mediterrâneo, nº 290 — Salas 116/118\nJardim do Mar\nSão Bernardo do Campo – SP", h: "https://maps.app.goo.gl/EUUYWGcLPmG74b2KA" },
               ].map(({ Icon, t, h }, i) => {
                 const inner = (
                   <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", fontSize: "12px" }}>
@@ -51,7 +51,7 @@ export default function Footer() {
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
                 >
-                  <span style={{ color: "#C9A84C", fontSize: "10px" }}>›</span> {l}
+                  <BzBullet /> {l}
                 </a></li>
               ))}
             </ul>
@@ -66,7 +66,7 @@ export default function Footer() {
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#C9A84C"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
                 >
-                  <span style={{ color: "#C9A84C", fontSize: "10px" }}>›</span> {s}
+                  <BzBullet /> {s}
                 </a></li>
               ))}
             </ul>
