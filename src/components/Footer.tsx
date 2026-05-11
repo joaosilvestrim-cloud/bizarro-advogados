@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 
-const navLinks = [
+const pages = [
   { label: "Início", href: "#inicio" },
   { label: "Escritório de Advocacia", href: "#escritorio" },
   { label: "Serviços de Advocacia", href: "#servicos" },
@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Contato e Localização", href: "#contato" },
 ];
 
-const services = [
+const specialties = [
   "Contratos",
   "Recuperação Judicial e Falência",
   "Direito Imobiliário",
@@ -19,96 +19,93 @@ const services = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#060E1A] text-white/60">
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
-        <div className="grid md:grid-cols-4 gap-10">
+    <footer className="w-full bg-[#060E1A] text-white/50 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="mb-4">
-              <p
-                className="text-2xl font-bold tracking-[0.15em] text-white"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                BIZARRO
-              </p>
-              <p className="text-[10px] tracking-[0.3em] text-[#C9A84C] uppercase font-light">
-                Advogados Associados
-              </p>
-            </div>
-            <div className="gold-line mb-5" />
-            <p className="text-xs leading-relaxed mb-6">
-              Excelência jurídica com propósito. Protegendo os seus interesses com estratégia,
-              ética e comprometimento.
+          <div>
+            <p
+              className="text-xl font-bold tracking-[0.12em] text-white mb-0.5"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              BIZARRO
             </p>
-            <div className="space-y-2 text-xs">
+            <p className="text-[9px] tracking-[0.28em] text-[#C9A84C] uppercase font-light mb-4">
+              Advogados Associados
+            </p>
+            <div className="gold-line mb-5" />
+            <p className="text-[13px] leading-relaxed mb-6">
+              Excelência jurídica com propósito. Protegendo os seus interesses
+              com estratégia, ética e comprometimento.
+            </p>
+            <div className="space-y-2 text-[13px]">
               <a href="tel:+551143374200" className="flex items-center gap-2 hover:text-[#C9A84C] transition-colors">
-                <Phone size={12} className="text-[#C9A84C]" />
+                <Phone size={12} className="text-[#C9A84C] shrink-0" />
                 (11) 4337-4200
               </a>
-              <a href="mailto:sidnei@bizarro.adv.br" className="flex items-center gap-2 hover:text-[#C9A84C] transition-colors">
-                <Mail size={12} className="text-[#C9A84C]" />
+              <a href="mailto:sidnei@bizarro.adv.br" className="flex items-center gap-2 hover:text-[#C9A84C] transition-colors break-all">
+                <Mail size={12} className="text-[#C9A84C] shrink-0" />
                 sidnei@bizarro.adv.br
               </a>
               <div className="flex items-start gap-2">
-                <MapPin size={12} className="text-[#C9A84C] mt-0.5 shrink-0" />
+                <MapPin size={12} className="text-[#C9A84C] shrink-0 mt-0.5" />
                 <span>Al. Dona Tereza Cristina, 372<br />Jardim Nova Petropolis<br />São Bernardo do Campo – SP</span>
               </div>
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Pages */}
           <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-[#C9A84C] mb-5 font-medium">
+            <h4 className="text-[10px] tracking-[0.28em] uppercase text-[#C9A84C] mb-5 font-medium">
               Páginas
             </h4>
             <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
+              {pages.map((p) => (
+                <li key={p.href}>
                   <a
-                    href={link.href}
-                    className="text-xs hover:text-[#C9A84C] transition-colors flex items-center gap-1.5 group"
+                    href={p.href}
+                    className="text-[13px] hover:text-[#C9A84C] transition-colors flex items-center gap-1.5 group"
                   >
-                    <span className="text-[#C9A84C]/0 group-hover:text-[#C9A84C] transition-colors">›</span>
-                    {link.label}
+                    <span className="text-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity">›</span>
+                    {p.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Specialties */}
           <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-[#C9A84C] mb-5 font-medium">
+            <h4 className="text-[10px] tracking-[0.28em] uppercase text-[#C9A84C] mb-5 font-medium">
               Especialidades
             </h4>
             <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
+              {specialties.map((s) => (
+                <li key={s}>
                   <a
                     href="#servicos"
-                    className="text-xs hover:text-[#C9A84C] transition-colors flex items-center gap-1.5 group"
+                    className="text-[13px] hover:text-[#C9A84C] transition-colors flex items-center gap-1.5 group"
                   >
-                    <span className="text-[#C9A84C]/0 group-hover:text-[#C9A84C] transition-colors">›</span>
-                    {service}
+                    <span className="text-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity">›</span>
+                    {s}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* CTA block */}
+          {/* CTA */}
           <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-[#C9A84C] mb-5 font-medium">
+            <h4 className="text-[10px] tracking-[0.28em] uppercase text-[#C9A84C] mb-5 font-medium">
               Consulta Jurídica
             </h4>
-            <p className="text-xs leading-relaxed mb-6">
-              Agende uma consulta e descubra como podemos proteger seus interesses com soluções
-              personalizadas e eficazes.
+            <p className="text-[13px] leading-relaxed mb-6">
+              Agende uma consulta e descubra como podemos proteger seus
+              interesses com soluções personalizadas.
             </p>
             <a
               href="#contato"
-              className="inline-block px-6 py-3 border border-[#C9A84C] text-[#C9A84C] text-xs tracking-widest uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-300"
+              className="inline-block px-6 py-3 border border-[#C9A84C] text-[#C9A84C] text-[10px] tracking-[0.25em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-200"
             >
               Agendar Consulta
             </a>
@@ -116,11 +113,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-[10px] tracking-wider uppercase">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-[10px] tracking-wider uppercase text-white/25">
           <p>© {new Date().getFullYear()} Bizarro e Associados. Todos os direitos reservados.</p>
-          <p className="text-white/20">OAB/SP</p>
+          <p>OAB/SP</p>
         </div>
       </div>
     </footer>

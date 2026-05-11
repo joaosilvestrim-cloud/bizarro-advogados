@@ -3,6 +3,25 @@
 import { useEffect, useRef } from "react";
 import { CheckCircle2 } from "lucide-react";
 
+function useReveal(delay = 0) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => el.classList.add("visible"), delay);
+        }
+      },
+      { threshold: 0.08 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay]);
+  return ref;
+}
+
 const missionPoints = [
   "Empresas precisam ser cada vez mais competitivas em seu segmento",
   "Competitividade exige foco no objeto-fim do negócio: produção e vendas",
@@ -11,151 +30,128 @@ const missionPoints = [
 ];
 
 const philosophyPoints = [
-  "Participação efetiva para o engrandecimento da sociedade e da Nação",
-  "Transparência e Clareza perante nossos clientes",
-  "Ética e profissionalismo indispensáveis na conduta de nossos diretores",
-  "Respeito, Incentivo e Participação para nossos colaboradores",
+  { n: "01", text: "Participação efetiva para o engrandecimento da sociedade e da Nação" },
+  { n: "02", text: "Transparência e Clareza devem orientar nossas atitudes perante os clientes" },
+  { n: "03", text: "Ética e profissionalismo são fatores indispensáveis na conduta de nossos diretores" },
+  { n: "04", text: "Respeito, Incentivo e Participação é o mínimo que nossos colaboradores merecem" },
 ];
 
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("opacity-100", "translate-y-0");
-          entry.target.classList.remove("opacity-0", "translate-y-8");
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return ref;
-}
-
 export default function About() {
-  const ref1 = useReveal();
-  const ref2 = useReveal();
-  const ref3 = useReveal();
+  const r1 = useReveal(0);
+  const r2 = useReveal(0);
+  const r3 = useReveal(0);
 
   return (
-    <section id="escritorio" className="relative bg-[#F5F3EE] overflow-hidden">
-      {/* Top accent */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
+    <section id="escritorio" className="w-full bg-[#F5F3EE] overflow-hidden">
+      {/* Top rule */}
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
 
-      {/* Intro block */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-24">
-        <div
-          ref={ref1}
-          className="grid md:grid-cols-2 gap-16 items-center opacity-0 translate-y-8 transition-all duration-700"
-        >
+      {/* ── Who we are ── */}
+      <div className="max-w-6xl mx-auto px-6 md:px-12 py-24">
+        <div ref={r1} className="fade-up grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text */}
-          <div>
-            <span className="text-xs tracking-[0.4em] text-[#C9A84C] uppercase font-medium">
+          <div className="min-w-0">
+            <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
               Escritório de Advocacia
-            </span>
+            </p>
             <h2
-              className="mt-3 text-4xl md:text-5xl font-bold text-[#0A1628] leading-tight mb-6"
+              className="text-4xl md:text-5xl font-bold text-[#0A1628] leading-tight mb-4"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Quem
-              <br />
+              Quem <br />
               <span className="italic text-[#C9A84C]">Somos</span>
             </h2>
-            <div className="gold-line mb-8" />
-            <p className="text-[#0A1628]/70 leading-relaxed mb-4 text-base">
-              O <strong className="text-[#0A1628]">Bizarro Advogados Associados</strong> está
-              localizado em São Bernardo do Campo, ABC — São Paulo. Criamos uma organização de
-              serviços jurídicos que reúne profissionais do mais alto nível, com visão de futuro e
-              objetivo claro.
+            <div className="gold-line mb-7" />
+            <p className="text-[#0A1628]/65 leading-relaxed mb-4 text-[15px]">
+              O{" "}
+              <strong className="text-[#0A1628] font-semibold">
+                Bizarro Advogados Associados
+              </strong>{" "}
+              está localizado em São Bernardo do Campo, ABC — São Paulo. Criamos
+              uma organização de serviços jurídicos que reúne profissionais do
+              mais alto nível, com visão de futuro e objetivo claro.
             </p>
-            <p className="text-[#0A1628]/70 leading-relaxed text-base">
-              Investimos em pesquisa e desenvolvimento de técnicas capazes de dar respostas
-              inovadoras em ambientes em constante mutação, sempre com foco no lucro e no sucesso
-              de nossos parceiros.
+            <p className="text-[#0A1628]/65 leading-relaxed text-[15px]">
+              Investimos em pesquisa e desenvolvimento de técnicas capazes de
+              dar respostas inovadoras em ambientes em constante mutação, sempre
+              com foco no lucro e no sucesso de nossos parceiros.
             </p>
-
-            {/* Quote */}
-            <blockquote className="mt-8 pl-5 border-l-2 border-[#C9A84C]">
+            <blockquote className="mt-8 pl-4 border-l-2 border-[#C9A84C]">
               <p
-                className="italic text-[#0A1628]/60 text-lg"
+                className="italic text-[#0A1628]/55 text-base"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                "É preciso encontrar os valores que sejam a essência do negócio e o conduzam até
-                o futuro"
+                "É preciso encontrar os valores que sejam a essência do negócio
+                e o conduzam até o futuro"
               </p>
             </blockquote>
           </div>
 
-          {/* Image / visual */}
-          <div className="relative">
-            <div className="absolute -top-4 -left-4 w-full h-full border border-[#C9A84C]/20" />
-            <div className="relative bg-[#0A1628] aspect-[4/5] overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center p-12">
-                  <div
-                    className="text-7xl font-bold text-gold-gradient mb-4"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    Bz
-                  </div>
-                  <div className="w-16 h-px bg-[#C9A84C] mx-auto mb-4" />
-                  <p className="text-white/40 text-xs tracking-[0.3em] uppercase">
-                    Desde 2010
-                  </p>
-                </div>
-              </div>
-              {/* Decorative grid */}
+          {/* Visual block */}
+          <div className="relative w-full max-w-sm mx-auto md:mx-0">
+            {/* Border accent */}
+            <div className="absolute -top-3 -left-3 w-full h-full border border-[#C9A84C]/20 pointer-events-none" />
+            {/* Card */}
+            <div className="relative bg-[#0A1628] aspect-[3/4] flex items-center justify-center overflow-hidden">
+              {/* grid bg */}
               <div
-                className="absolute inset-0 opacity-[0.03]"
+                aria-hidden
+                className="absolute inset-0 opacity-[0.04]"
                 style={{
                   backgroundImage:
-                    "linear-gradient(#C9A84C 1px, transparent 1px), linear-gradient(90deg, #C9A84C 1px, transparent 1px)",
-                  backgroundSize: "40px 40px",
+                    "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)",
+                  backgroundSize: "36px 36px",
                 }}
               />
+              <div className="relative z-10 text-center px-8">
+                <p
+                  className="text-7xl font-bold text-gold-gradient mb-3"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  Bz
+                </p>
+                <div className="h-px w-12 bg-[#C9A84C] mx-auto mb-3" />
+                <p className="text-white/30 text-[10px] tracking-[0.35em] uppercase">
+                  Desde 2010
+                </p>
+              </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#C9A84C]/10" />
+            {/* Bottom accent */}
+            <div className="absolute -bottom-3 -right-3 w-24 h-24 bg-[#C9A84C]/10 pointer-events-none" />
           </div>
         </div>
       </div>
 
-      {/* Mission */}
-      <div className="bg-[#0A1628] py-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div
-            ref={ref2}
-            className="opacity-0 translate-y-8 transition-all duration-700"
-          >
-            <div className="text-center mb-14">
-              <span className="text-xs tracking-[0.4em] text-[#C9A84C] uppercase font-medium">
+      {/* ── Mission ── */}
+      <div className="bg-[#0A1628] py-20 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <div ref={r2} className="fade-up">
+            <div className="text-center mb-12">
+              <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
                 Nosso Propósito
-              </span>
+              </p>
               <h3
-                className="mt-3 text-3xl md:text-4xl font-bold text-white"
+                className="text-3xl md:text-4xl font-bold text-white"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                Nossa <span className="italic text-[#C9A84C]">Missão</span>
+                Nossa{" "}
+                <span className="italic text-[#C9A84C]">Missão</span>
               </h3>
-              <p className="mt-2 text-xs tracking-widest text-white/30 uppercase">
+              <p className="text-white/30 text-[10px] tracking-widest uppercase mt-2">
                 Contribuir com o desenvolvimento empresarial
               </p>
             </div>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              {missionPoints.map((point, i) => (
+            <div className="grid sm:grid-cols-2 gap-3">
+              {missionPoints.map((pt, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-6 border border-white/5 hover:border-[#C9A84C]/30 transition-colors group"
+                  className="flex items-start gap-3 p-5 border border-white/8 hover:border-[#C9A84C]/30 transition-colors"
                 >
-                  <CheckCircle2 size={18} className="text-[#C9A84C] mt-0.5 shrink-0" />
-                  <p className="text-white/70 text-sm leading-relaxed group-hover:text-white/90 transition-colors">
-                    {point}
-                  </p>
+                  <CheckCircle2
+                    size={16}
+                    className="text-[#C9A84C] mt-0.5 shrink-0"
+                  />
+                  <p className="text-white/65 text-sm leading-relaxed">{pt}</p>
                 </div>
               ))}
             </div>
@@ -163,54 +159,56 @@ export default function About() {
         </div>
       </div>
 
-      {/* Philosophy */}
-      <div className="py-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div
-            ref={ref3}
-            className="opacity-0 translate-y-8 transition-all duration-700"
-          >
-            <div className="text-center mb-14">
-              <span className="text-xs tracking-[0.4em] text-[#C9A84C] uppercase font-medium">
+      {/* ── Philosophy ── */}
+      <div className="py-20 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <div ref={r3} className="fade-up">
+            <div className="text-center mb-12">
+              <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
                 Valores
-              </span>
+              </p>
               <h3
-                className="mt-3 text-3xl md:text-4xl font-bold text-[#0A1628]"
+                className="text-3xl md:text-4xl font-bold text-[#0A1628]"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                Nossa <span className="italic text-[#C9A84C]">Filosofia</span>
+                Nossa{" "}
+                <span className="italic text-[#C9A84C]">Filosofia</span>
               </h3>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {philosophyPoints.map((point, i) => (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {philosophyPoints.map((pt) => (
                 <div
-                  key={i}
-                  className="relative p-8 bg-white shadow-sm hover:shadow-md transition-shadow border-t-2 border-transparent hover:border-[#C9A84C] group"
+                  key={pt.n}
+                  className="bg-white p-7 border-t-2 border-transparent hover:border-[#C9A84C] transition-colors duration-300 shadow-sm"
                 >
-                  <div className="text-4xl font-bold text-[#C9A84C]/10 group-hover:text-[#C9A84C]/20 transition-colors mb-4"
-                    style={{ fontFamily: "var(--font-playfair)" }}>
-                    0{i + 1}
-                  </div>
-                  <p className="text-[#0A1628]/70 text-sm leading-relaxed">{point}</p>
+                  <p
+                    className="text-5xl font-bold text-[#F5F3EE] mb-4 leading-none"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {pt.n}
+                  </p>
+                  <p className="text-[#0A1628]/65 text-sm leading-relaxed">
+                    {pt.text}
+                  </p>
                 </div>
               ))}
             </div>
 
-            <blockquote className="mt-16 text-center">
+            <blockquote className="mt-14 text-center">
               <p
-                className="italic text-[#0A1628]/50 text-xl"
+                className="italic text-[#0A1628]/40 text-lg max-w-xl mx-auto"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                "Não fortalecerás a dignidade e o ânimo, se subtraires aos homens a iniciativa e
-                a liberdade."
+                "Não fortalecerás a dignidade e o ânimo, se subtraires aos
+                homens a iniciativa e a liberdade."
               </p>
             </blockquote>
           </div>
         </div>
       </div>
 
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
     </section>
   );
 }

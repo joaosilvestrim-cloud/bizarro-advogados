@@ -61,71 +61,71 @@ const services = [
 ];
 
 function ServiceCard({
-  service,
-  index,
+  svc,
+  idx,
 }: {
-  service: (typeof services)[0];
-  index: number;
+  svc: (typeof services)[0];
+  idx: number;
 }) {
   const [open, setOpen] = useState(false);
-  const Icon = service.icon;
+  const Icon = svc.icon;
 
   return (
-    <div
-      className="group relative bg-white border border-[#E8E4DC] hover:border-[#C9A84C]/40 transition-all duration-500"
-      style={{ transitionDelay: `${index * 100}ms` }}
-    >
-      {/* Top accent line */}
-      <div className="h-0.5 w-0 bg-gradient-to-r from-[#C9A84C] to-[#E8C96E] group-hover:w-full transition-all duration-500" />
+    <div className="relative bg-white border border-[#E8E4DC] hover:border-[#C9A84C]/50 transition-colors duration-300 group overflow-hidden">
+      {/* Hover top line */}
+      <div className="absolute top-0 left-0 h-0.5 w-0 bg-gradient-to-r from-[#C9A84C] to-[#E8C96E] group-hover:w-full transition-all duration-500" />
 
       <div className="p-8">
-        {/* Icon */}
-        <div className="w-12 h-12 flex items-center justify-center border border-[#C9A84C]/30 bg-[#C9A84C]/5 mb-6 group-hover:bg-[#C9A84C]/10 transition-colors">
-          <Icon size={20} className="text-[#C9A84C]" />
-        </div>
-
-        {/* Number */}
+        {/* Number - decorative, behind */}
         <span
-          className="text-[80px] font-bold text-[#F5F3EE] leading-none absolute top-4 right-6 select-none"
+          aria-hidden
+          className="absolute bottom-4 right-5 text-8xl font-bold text-[#F5F3EE] leading-none select-none pointer-events-none"
           style={{ fontFamily: "var(--font-playfair)" }}
         >
-          {String(index + 1).padStart(2, "0")}
+          {String(idx + 1).padStart(2, "0")}
         </span>
 
+        {/* Icon */}
+        <div className="relative z-10 w-11 h-11 flex items-center justify-center border border-[#C9A84C]/30 bg-[#C9A84C]/5 mb-5 group-hover:bg-[#C9A84C]/15 transition-colors">
+          <Icon size={18} className="text-[#C9A84C]" />
+        </div>
+
+        {/* Title */}
         <h3
-          className="text-xl font-bold text-[#0A1628] mb-3 relative z-10"
+          className="relative z-10 text-lg font-bold text-[#0A1628] mb-2"
           style={{ fontFamily: "var(--font-playfair)" }}
         >
-          {service.title}
+          {svc.title}
         </h3>
 
-        <p className="text-[#0A1628]/60 text-sm leading-relaxed mb-6 relative z-10">
-          {service.description}
+        {/* Description */}
+        <p className="relative z-10 text-[#0A1628]/55 text-sm leading-relaxed mb-5">
+          {svc.description}
         </p>
 
-        {/* Accordion toggle */}
+        {/* Toggle */}
         <button
-          onClick={() => setOpen(!open)}
-          className="flex items-center gap-2 text-xs tracking-widest uppercase text-[#C9A84C] hover:text-[#A07830] transition-colors font-medium relative z-10"
+          onClick={() => setOpen((v) => !v)}
+          className="relative z-10 flex items-center gap-1.5 text-[11px] tracking-[0.2em] uppercase text-[#C9A84C] hover:text-[#A07830] transition-colors font-semibold"
         >
           {open ? "Fechar" : "Ver serviços"}
           <ChevronDown
-            size={14}
+            size={13}
             className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
           />
         </button>
 
-        {/* Expanded list */}
+        {/* Expanded */}
         <div
-          className={`overflow-hidden transition-all duration-500 ${
-            open ? "max-h-96 mt-6" : "max-h-0"
+          className={`overflow-hidden transition-all duration-400 ${
+            open ? "max-h-80 mt-5" : "max-h-0"
           }`}
         >
-          <div className="border-t border-[#E8E4DC] pt-5">
+          <div className="border-t border-[#E8E4DC] pt-4">
             <ul className="space-y-2">
-              {service.items.map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-[#0A1628]/70">
-                  <span className="text-[#C9A84C] mt-1 shrink-0">—</span>
+              {svc.items.map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-[#0A1628]/65">
+                  <span className="text-[#C9A84C] shrink-0 mt-px">—</span>
                   {item}
                 </li>
               ))}
@@ -141,70 +141,58 @@ export default function Services() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("opacity-100", "translate-y-0");
-          entry.target.classList.remove("opacity-0", "translate-y-8");
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
       { threshold: 0.05 }
     );
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="servicos" className="relative bg-[#F5F3EE] py-24 overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-[#C9A84C]/20 to-transparent hidden md:block ml-12" />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="servicos" className="w-full bg-[#F5F3EE] py-24 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
         {/* Header */}
-        <div
-          ref={ref}
-          className="mb-16 opacity-0 translate-y-8 transition-all duration-700"
-        >
+        <div ref={ref} className="fade-up mb-14">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
-              <span className="text-xs tracking-[0.4em] text-[#C9A84C] uppercase font-medium">
+              <p className="text-[11px] tracking-[0.4em] text-[#C9A84C] uppercase font-medium mb-3">
                 Especialidades
-              </span>
+              </p>
               <h2
-                className="mt-3 text-4xl md:text-5xl font-bold text-[#0A1628] leading-tight"
+                className="text-4xl md:text-5xl font-bold text-[#0A1628] leading-tight"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                Serviços de
-                <br />
+                Serviços de <br />
                 <span className="italic text-[#C9A84C]">Advocacia</span>
               </h2>
             </div>
-            <p className="text-[#0A1628]/50 text-sm max-w-xs leading-relaxed md:text-right">
-              Atuamos nas principais áreas do direito empresarial e tributário, com soluções
-              personalizadas para cada cliente.
+            <p className="text-[#0A1628]/45 text-sm max-w-56 leading-relaxed md:text-right">
+              Soluções personalizadas nas principais áreas do direito empresarial e tributário.
             </p>
           </div>
           <div className="gold-line mt-8" />
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {services.map((service, i) => (
-            <ServiceCard key={i} service={service} index={i} />
+        <div className="grid md:grid-cols-2 gap-5">
+          {services.map((svc, i) => (
+            <ServiceCard key={i} svc={svc} idx={i} />
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-[#0A1628]/50 text-sm mb-6">
-            Não encontrou o que procurava? Entre em contato e descubra como podemos ajudar.
+        {/* CTA */}
+        <div className="mt-14 text-center">
+          <p className="text-[#0A1628]/40 text-sm mb-5">
+            Não encontrou o que procurava? Entre em contato.
           </p>
           <a
             href="#contato"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#0A1628] text-white text-sm tracking-widest uppercase font-light hover:bg-[#112240] transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#0A1628] text-white text-[11px] tracking-[0.2em] uppercase hover:bg-[#112240] transition-colors"
           >
-            Fale Conosco
-            <span>→</span>
+            Fale Conosco →
           </a>
         </div>
       </div>
